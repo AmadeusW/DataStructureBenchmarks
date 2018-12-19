@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using System;
 
 namespace Deo.DataStructureBenchmarks
 {
@@ -6,7 +7,7 @@ namespace Deo.DataStructureBenchmarks
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var summary = BenchmarkRunner.Run<HashSetVsArrayBuilder>();
         }
     }
 }
