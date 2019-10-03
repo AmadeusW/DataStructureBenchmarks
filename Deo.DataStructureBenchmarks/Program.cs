@@ -7,7 +7,7 @@ namespace Deo.DataStructureBenchmarks
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<HashSetVsArrayBuilder>();
+            var summary = BenchmarkRunner.Run<StringlyVsStronglyTyped>();
         }
     }
 }
