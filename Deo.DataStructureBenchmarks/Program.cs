@@ -1,5 +1,6 @@
-﻿using BenchmarkDotNet.Running;
-using System;
+﻿using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
 
 namespace Deo.DataStructureBenchmarks
 {
@@ -7,7 +8,14 @@ namespace Deo.DataStructureBenchmarks
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<StringlyVsStronglyTyped>();
+            var config = ManualConfig.Create(DefaultConfig.Instance);
+            config.Set(new SummaryStyle()
+            {
+                PrintUnitsInContent = false,
+                PrintUnitsInHeader = true,
+            });
+
+            var summary = BenchmarkRunner.Run<StringlyVsStronglyTyped>(config);
         }
     }
 }

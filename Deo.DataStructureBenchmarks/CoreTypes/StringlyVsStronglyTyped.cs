@@ -1,14 +1,11 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
 
 namespace Deo.DataStructureBenchmarks
 {
     public class StringlyVsStronglyTyped
     {
-        [Params(128, 256, 512)]
+        [Params(128, 256, 512, 1024)]
         public int Reads;
 
         QueriedObject Subject;
@@ -19,8 +16,13 @@ namespace Deo.DataStructureBenchmarks
             Subject = new QueriedObject();
         }
 
+        const string Value1Name = nameof(QueriedObject.Value1);
+        const string Value2Name = nameof(QueriedObject.Value2);
+        const string Value3Name = nameof(QueriedObject.Value3);
+        const string Value4Name = nameof(QueriedObject.Value4);
+
         [Benchmark]
-        public void StringlyTyped()
+        public void StringlyTypedWithoutConstKey()
         {
             for (int i = 0; i < Reads; i++)
             {
@@ -32,14 +34,26 @@ namespace Deo.DataStructureBenchmarks
         }
 
         [Benchmark]
+        public void StringlyTyped()
+        {
+            for (int i = 0; i < Reads; i++)
+            {
+                var got1 = Subject.TryGetValue(Value1Name, out var v1);
+                var got2 = Subject.TryGetValue(Value2Name, out var v2);
+                var got3 = Subject.TryGetValue(Value3Name, out var v3);
+                var got4 = Subject.TryGetValue(Value4Name, out var v4);
+            }
+        }
+
+        [Benchmark]
         public void StringlyTypedWithCast()
         {
             for (int i = 0; i < Reads; i++)
             {
-                var got1 = Subject.TryGetValue(nameof(Subject.Value1), out var v1);
-                var got2 = Subject.TryGetValue(nameof(Subject.Value2), out var v2);
-                var got3 = Subject.TryGetValue(nameof(Subject.Value3), out var v3);
-                var got4 = Subject.TryGetValue(nameof(Subject.Value4), out var v4);
+                var got1 = Subject.TryGetValue(Value1Name, out var v1);
+                var got2 = Subject.TryGetValue(Value2Name, out var v2);
+                var got3 = Subject.TryGetValue(Value3Name, out var v3);
+                var got4 = Subject.TryGetValue(Value4Name, out var v4);
 
                 string s1 = (string)v1;
                 int s2 = (int)v2;
@@ -71,16 +85,16 @@ namespace Deo.DataStructureBenchmarks
             {
                 switch (key)
                 {
-                    case nameof(Value1):
+                    case Value1Name:
                         value = Value1;
                         return true;
-                    case nameof(Value2):
+                    case Value2Name:
                         value = Value2;
                         return true;
-                    case nameof(Value3):
+                    case Value3Name:
                         value = Value3;
                         return true;
-                    case nameof(Value4):
+                    case Value4Name:
                         value = Value4;
                         return true;
                     default:
