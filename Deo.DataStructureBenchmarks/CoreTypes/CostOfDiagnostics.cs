@@ -25,24 +25,13 @@ namespace Deo.DataStructureBenchmarks
         }
 
         [Benchmark]
-        public void GcCount()
+        public void GetGcCount()
         {
             for (int i = 0; i < Ops; i++)
             {
                 var list = new List<string>();
                 list.Add($"value {i}");
                 var gcCount = GC.CollectionCount(0);
-            }
-        }
-
-        [Benchmark]
-        public void StackTrace()
-        {
-            for (int i = 0; i < Ops; i++)
-            {
-                var list = new List<string>();
-                list.Add($"value {i}");
-                var stackTrace = Environment.StackTrace;
             }
         }
 
@@ -58,6 +47,17 @@ namespace Deo.DataStructureBenchmarks
                     throw new InvalidOperationException();
                 }
                 catch { }
+            }
+        }
+
+        [Benchmark]
+        public void StackTrace()
+        {
+            for (int i = 0; i < Ops; i++)
+            {
+                var list = new List<string>();
+                list.Add($"value {i}");
+                var stackTrace = Environment.StackTrace;
             }
         }
 

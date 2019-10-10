@@ -23,8 +23,8 @@ Diagnostics, time per operation
 
 | Operation    | Time \[ns\] |
 |--------------|-------------|
-| Baseline     |  0\.24      |
-| GcCount      |  0\.23      |
-| StackTrace   |  178\.91    |
-| Exception    |  50\.93     |
-| ConsoleWrite |  444\.06    |
+| Baseline     |  0\.21      |
+| GetGcCount   |  0\.21      |
+| Exception    |  43\.53     |
+| StackTrace   |  149\.60    |
+| ConsoleWrite |  377\.91    |
