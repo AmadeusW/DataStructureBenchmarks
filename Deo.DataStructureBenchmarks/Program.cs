@@ -15,7 +15,7 @@ namespace Deo.DataStructureBenchmarks
                 PrintUnitsInHeader = true,
             });
 
-            var summary = BenchmarkRunner.Run<StringlyVsStronglyTyped>(config);
+            var summary = BenchmarkRunner.Run<CostOfDiagnostics>(config);
         }
     }
 }
