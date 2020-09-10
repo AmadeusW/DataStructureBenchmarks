@@ -28,3 +28,11 @@ Diagnostics, time per operation
 | Exception    |  43\.53     |
 | StackTrace   |  149\.60    |
 | ConsoleWrite |  377\.91    |
+
+Mapping type to a key, time per operation
+
+| Operation       | Time \[ns\] |
+|-----------------|-------------|
+| Baseline        |  5\.89      |
+| GetType         |  6\.01      |
+| GetTypeToString | 16\.21     |
