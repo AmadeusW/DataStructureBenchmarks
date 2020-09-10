@@ -17,9 +17,9 @@ namespace Deo.DataStructureBenchmarks
         [Benchmark]
         public void Baseline()
         {
+            var list = new List<string>(Ops);
             for (int i = 0; i < Ops; i++)
             {
-                var list = new List<string>();
                 list.Add($"value {i}");
             }
         }
@@ -27,9 +27,9 @@ namespace Deo.DataStructureBenchmarks
         [Benchmark]
         public void GetGcCount()
         {
+            var list = new List<string>(Ops);
             for (int i = 0; i < Ops; i++)
             {
-                var list = new List<string>();
                 list.Add($"value {i}");
                 var gcCount = GC.CollectionCount(0);
             }
@@ -38,11 +38,11 @@ namespace Deo.DataStructureBenchmarks
         [Benchmark]
         public void Exception()
         {
+            var list = new List<string>(Ops);
             for (int i = 0; i < Ops; i++)
             {
                 try
                 {
-                    var list = new List<string>();
                     list.Add($"value {i}");
                     throw new InvalidOperationException();
                 }
@@ -53,9 +53,9 @@ namespace Deo.DataStructureBenchmarks
         [Benchmark]
         public void StackTrace()
         {
+            var list = new List<string>(Ops);
             for (int i = 0; i < Ops; i++)
             {
-                var list = new List<string>();
                 list.Add($"value {i}");
                 var stackTrace = Environment.StackTrace;
             }
@@ -64,9 +64,9 @@ namespace Deo.DataStructureBenchmarks
         [Benchmark]
         public void ConsoleWrite()
         {
+            var list = new List<string>(Ops);
             for (int i = 0; i < Ops; i++)
             {
-                var list = new List<string>();
                 list.Add($"value {i}");
                 Console.WriteLine(i);
             }
