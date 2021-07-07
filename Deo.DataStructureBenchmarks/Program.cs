@@ -15,7 +15,16 @@ namespace Deo.DataStructureBenchmarks
                 PrintUnitsInHeader = true,
             });
 
-            var summary = BenchmarkRunner.Run<CostOfDiagnostics>(config);
+            var summary = BenchmarkRunner.Run<WordTokenizer>(config);
+            /*
+            var x = new WordTokenizer();
+            x.Setup();
+            x.StringTokenizer();
+            x.Setup();
+            x.RegexTokenizer();
+            x.Setup();
+            x.CompiledRegexTokenizer();
+            */
         }
     }
 }
